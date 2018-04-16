@@ -4,37 +4,42 @@
 
 #include "Interface.h"
 
-void load(std::set<Aircraft, std::less<>> &aircraft, char &sel){
-    aircraft_type p_type;
+Interface &Interface::interface() {
+    static Interface inter;
+    return inter;
+}
+
+bool Interface::load(){
     LoadSave &ls = LoadSave::loadsave();
 
     std::cout << "Enter type of aircrafts: p - passenger aircraft\n"
               << "                         c - combat aircraft\n"
               << "                         h - helicopter\n"
               << "                         q - quadcopter\n";
-    std::cout << "Your choice: ";   std::cin >> sel;
+    std::cout << "Your choice: ";   sel = Validator::set_char();
 
     switch (sel){
         case 'p':
-            p_type = passenger_aircraft;
+            filename = "passenger_aircraft";
             break;
         case 'c':
-            p_type = combat_aircraft;
+            filename = "combat_aircraft";
             break;
         case 'h':
-            p_type = helicopter;
+            filename = "helicopter";
             break;
         case 'q':
-            p_type = quadcopter;
+            filename = "quadcopter";
             break;
         default:
             std::cerr << "Error! Invalid type!\n";
-            return;
+            return false;
     }
-    ls.load(aircraft, p_type);
+    ls.load(aircraft, filename);
+    return true;
 }
 
-void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+void Interface::save(){
     PassengerAircraftBuilder &pas = PassengerAircraftBuilder::build();
     CombatAircraftBuilder &comb = CombatAircraftBuilder::build();
     HelicopterBuilder &hel = HelicopterBuilder::build();
@@ -43,11 +48,10 @@ void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
     LoadSave &ls = LoadSave::loadsave();
     std::shared_ptr<Aircraft> pl;
     Aircraft p;
-    aircraft_type p_type;
 
     int qnt = 0;
-    load(aircraft, sel);
-    std::cout << "Enter quantity of aircrafts: "; std::cin >> qnt;
+    load();
+    std::cout << "Enter quantity of aircrafts: "; qnt = Validator::set_int();
     switch (sel){
         case 'p':
             for (int i = 0; i < qnt; ++i){
@@ -56,7 +60,6 @@ void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
                 p = *pl;
                 aircraft.emplace(p);
             }
-            ls.save(aircraft, p_type);
             break;
 
         case 'c':
@@ -66,7 +69,6 @@ void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
                 p = *pl;
                 aircraft.emplace(p);
             }
-            ls.save(aircraft, p_type);
             break;
         case 'h':
             for (int i = 0; i < qnt; ++i){
@@ -75,7 +77,6 @@ void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
                 p = *pl;
                 aircraft.emplace(p);
             }
-            ls.save(aircraft, p_type);
             break;
         case 'q':
             for (int i = 0; i < qnt; ++i){
@@ -84,22 +85,24 @@ void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
                 p = *pl;
                 aircraft.emplace(p);
             }
-            ls.save(aircraft, p_type);
             break;
         default:
             std::cerr << "Error! Invalid type!\n";
             break;
     }
+    ls.save(aircraft, filename);
     std::cout << "Save is successful!\n";
     aircraft.clear();
 }
 
-void search_by_name(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+void Interface::search_by_name(){
     std::set<Aircraft, std::less<>>::const_iterator iter;
 
-    load(aircraft, sel);
+    if (load())
+        return;
+
     std::string search_name;
-    std::cout << "Enter search name: "; std::cin >> search_name;
+    std::cout << "Enter search name: "; search_name = Validator::set_string();
     Aircraft search(search_name);
     iter = aircraft.lower_bound(search);
     while (iter != aircraft.upper_bound(search))
@@ -107,35 +110,34 @@ void search_by_name(std::set<Aircraft, std::less<>> &aircraft, char &sel){
     aircraft.clear();
 }
 
-void show(std::set<Aircraft, std::less<>> &aircraft, char &sel){
-    load(aircraft, sel);
+void Interface::show(){
+    if (load())
+        return;
+
     for(auto &it : aircraft)
         std::cout << it;
     aircraft.clear();
 }
 
-void aircraft_conveyor(){
-    char sel = 0;
-    std::set<Aircraft, std::less<>> aircraft;
-
-    std::cout << "----------Aircraft conveyor----------\n";
+void Interface::aircraft_conveyor(){
+    std::cout << "-----------Aircraft conveyor-----------\n";
 
     while(sel != 'e'){
         std::cout << "\nChoose: c - create one or few aircraft;\n"
                   << "        s - show all aircrafts by type;\n"
                   << "        p - print by name;\n"
                   << "        e - exit;\n";
-        std::cout << "Your choice: ";   std::cin >> sel;
+        std::cout << "Your choice: ";   sel = Validator::set_char();
 
         switch(sel){
             case 'c':
-                save(aircraft, sel);
+                save();
                 break;
             case 's':
-                show(aircraft, sel);
+                show();
                 break;
             case 'p':
-                search_by_name(aircraft, sel);
+                search_by_name();
                 break;
             case 'e':
                 std::cout << "Exit\n";

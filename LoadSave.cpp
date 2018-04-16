@@ -9,30 +9,7 @@ LoadSave &LoadSave::loadsave() {
     return ls;
 }
 
-std::string LoadSave::return_filename(aircraft_type &p_type) {
-    std::string filename;
-
-    switch (p_type){
-        case passenger_aircraft:
-            filename = "passenger_aircraft.xml";
-            break;
-        case combat_aircraft:
-            filename = "combat_aircraft.xml";
-            break;
-        case helicopter:
-            filename = "helicopter.xml";
-            break;
-        case quadcopter:
-            filename = "quadcopter.xml";
-            break;
-        default:
-            std::cerr << "This type of aircraft is not supported!\n";
-            return nullptr;
-    }
-    return filename;
-}
-
-void LoadSave::save(std::set<Aircraft, std::less<>> &aircraft,  aircraft_type &p_type) {
+void LoadSave::save(std::set<Aircraft, std::less<>> &aircraft,  std::string &filename) {
     std::string path;
     for (auto &it : aircraft) {
         aircraft_.put(it.get_name(), "");
@@ -65,18 +42,18 @@ void LoadSave::save(std::set<Aircraft, std::less<>> &aircraft,  aircraft_type &p
         path = it.get_name() + ".weapon";
         aircraft_.put(path, it.get_weapon_type());
     }
-    boost::property_tree::write_xml(return_filename(p_type), aircraft_);
+    boost::property_tree::write_xml(filename, aircraft_);
 }
 
-void LoadSave::load(std::set<Aircraft, std::less<>> &aircraft, aircraft_type &p_type) {
-    std::ifstream file(return_filename(p_type));
+bool LoadSave::load(std::set<Aircraft, std::less<>> &aircraft, std::string &filename) {
+    std::ifstream file(filename);
     if(!file){
-        std::cerr << "Can`t open file " << return_filename(p_type) << std::endl;
-        return;
+        std::cerr << "Can`t open file " << filename << std::endl;
+        return false;
     }
 
     Aircraft air;
-    boost::property_tree::read_xml(return_filename(p_type), aircraft_);
+    boost::property_tree::read_xml(filename, aircraft_);
 
     for(boost::property_tree::ptree::value_type &it : aircraft_){
         std::string name = it.first;
@@ -114,4 +91,5 @@ void LoadSave::load(std::set<Aircraft, std::less<>> &aircraft, aircraft_type &p_
         aircraft.emplace(air);
     }
     std::cout << "\nLoad is successful!\n";
+    return true;
 }

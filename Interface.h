@@ -16,12 +16,27 @@
 #include <set>
 #include <iterator>
 
+class Interface{
+    std::set<Aircraft, std::less<>> aircraft;
+    std::string filename;
+    char sel{};
 
-void load(std::set<Aircraft, std::less<>> &aircraft, char &sel);
-void save(std::set<Aircraft, std::less<>> &aircraft, char &sel);
-void search_by_name(std::set<Aircraft, std::less<>> &aircraft, char &sel);
-void show(std::set<Aircraft, std::less<>> &aircraft, char &sel);
-void aircraft_conveyor();
+    Interface() = default;
+    ~Interface() = default;
 
+public:
+    Interface(const Interface &ls) = delete;
+    Interface(Interface &&ls) = delete;
+    Interface&operator=(const Interface &ls) = delete;
+    Interface&operator=(Interface &&ls) = delete;
+
+    static Interface &interface();
+
+    void aircraft_conveyor();
+    bool load();
+    void save();
+    void search_by_name();
+    void show();
+};
 
 #endif //TECHPROGKURSACH_INTERFACE_H

@@ -25,9 +25,6 @@ public:
     virtual void build_year() = 0;
     virtual void build_weapon(){};
     virtual std::shared_ptr<Aircraft> get() noexcept;
-
-    virtual int set_int();
-    virtual std::string set_string();
 };
 
 #endif //TECHPROGKURSACH_PLANEBUILDER_H

@@ -10,8 +10,6 @@
 #include <iomanip>
 #include <memory>
 
-enum aircraft_type{passenger_aircraft, combat_aircraft, helicopter, quadcopter};
-
 class Aircraft{
     std::string name_;
     std::string military_civil_;

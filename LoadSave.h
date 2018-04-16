@@ -17,7 +17,6 @@ class LoadSave {
     LoadSave() = default;
     ~LoadSave() = default;
 public:
-
     LoadSave(const LoadSave& ls) = delete;
     LoadSave(LoadSave&& ls) = delete;
     LoadSave&operator=(const LoadSave& ls) = delete;
@@ -25,9 +24,8 @@ public:
 
     static LoadSave &loadsave();
 
-    void load(std::set<Aircraft, std::less<>> &aircraft, aircraft_type &p_type);
-    void save(std::set<Aircraft, std::less<>> &aircraft, aircraft_type &p_type);
-    std::string return_filename(aircraft_type &p_type);
+    bool load(std::set<Aircraft, std::less<>> &aircraft, std::string &filename);
+    void save(std::set<Aircraft, std::less<>> &aircraft, std::string &filename);
 };
 
 #endif //TECHPROGKURSACH_READWRITE_H

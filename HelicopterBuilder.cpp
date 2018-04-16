@@ -15,39 +15,39 @@ void HelicopterBuilder::create() {
 
 void HelicopterBuilder::build_name() {
     std::cout << "Enter helicopter name: ";
-    aircraft->set_name(set_string());
+    aircraft->set_name(Validator::set_string());
 }
 
 void HelicopterBuilder::build_military_civil() {
     std::cout << "Enter helicopter type: military or civil: ";
-    aircraft->set_militaty_civil(set_string());
+    aircraft->set_militaty_civil(Validator::set_string());
 }
 
 void HelicopterBuilder::build_type() {
     std::cout << "Enter helicopter type: ";
-    aircraft->set_type(set_string());
+    aircraft->set_type(Validator::set_string());
 }
 
 void HelicopterBuilder::build_weight() {
     std::cout << "Enter takeoff weight: ";
-    aircraft->set_takeoff_weight(set_int());
+    aircraft->set_takeoff_weight(Validator::set_int());
 }
 
 void HelicopterBuilder::build_engines() {
     std::cout << "Enter engines type: ";
-    aircraft->set_engine_type(set_string());
+    aircraft->set_engine_type(Validator::set_string());
     std::cout << "Enter number of engines: ";
-    aircraft->set_engines(set_int());
+    aircraft->set_engines(Validator::set_int());
 }
 
 void HelicopterBuilder::build_chassis() {
     std::cout << "Enter chassis type: ";
-    aircraft->set_chassis_type(set_string());
+    aircraft->set_chassis_type(Validator::set_string());
 }
 
 void HelicopterBuilder::build_speed() {
     std::cout << "Enter flight speed: ";
-    aircraft->set_flight_speed_(set_int());
+    aircraft->set_flight_speed_(Validator::set_int());
 }
 
 void HelicopterBuilder::build_takeoff_land() {
@@ -56,20 +56,20 @@ void HelicopterBuilder::build_takeoff_land() {
 
 void HelicopterBuilder::build_control() {
     std::cout << "Enter control method: ";
-    aircraft->set_control_method(set_string());
+    aircraft->set_control_method(Validator::set_string());
 }
 
 void HelicopterBuilder::build_crew() {
     std::cout << "Enter number of crew: ";
-    aircraft->set_crew_(set_int());
+    aircraft->set_crew_(Validator::set_int());
 }
 
 void HelicopterBuilder::build_year() {
     std::cout << "Enter year of production: ";
-    aircraft->set_year_of_product_(set_int());
+    aircraft->set_year_of_product_(Validator::set_int());
 }
 
 void HelicopterBuilder::build_weapon() {
     std::cout << "Enter weapon type: ";
-    aircraft->set_weapon_type(set_string());
+    aircraft->set_weapon_type(Validator::set_string());
 }
