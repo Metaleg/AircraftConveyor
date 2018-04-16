@@ -6,12 +6,14 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/metalleg/CLionProjects/TechProgKursach/Aircraft.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/Aircraft.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/AircraftBuilder.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/AircraftBuilder.cpp.o"
-  "/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/CombatAircraft.cpp.o"
+  "/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/CombatAircraftBuilder.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/Director.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/Director.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/HelicopterBuilder.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/HelicopterBuilder.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/Interface.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/Interface.cpp.o"
+  "/home/metalleg/CLionProjects/TechProgKursach/LoadSave.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/LoadSave.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/PassengerAircraftBuilder.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/PassengerAircraftBuilder.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/QuadcopterBuilder.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/QuadcopterBuilder.cpp.o"
+  "/home/metalleg/CLionProjects/TechProgKursach/Validator.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/Validator.cpp.o"
   "/home/metalleg/CLionProjects/TechProgKursach/main.cpp" "/home/metalleg/CLionProjects/TechProgKursach/cmake-build-debug/CMakeFiles/TechProgKursach.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

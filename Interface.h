@@ -1,23 +1,27 @@
 //
-// Created by metalleg on 30.03.18.
+// Created by metalleg on 11.04.18.
 //
 
 #ifndef TECHPROGKURSACH_INTERFACE_H
 #define TECHPROGKURSACH_INTERFACE_H
+
 #include "Director.h"
 #include "PassengerAircraftBuilder.h"
-#include "CombatAircraft.h"
+#include "CombatAircraftBuilder.h"
 #include "HelicopterBuilder.h"
 #include "QuadcopterBuilder.h"
-
 #include "Aircraft.h"
+#include "LoadSave.h"
 #include <algorithm>
 #include <set>
 #include <iterator>
 
 
-void read_file(std::set<Aircraft>& aircraft);
-void create(std::set<Aircraft>& aircraft);
+void load(std::set<Aircraft, std::less<>> &aircraft, char &sel);
+void save(std::set<Aircraft, std::less<>> &aircraft, char &sel);
+void search_by_name(std::set<Aircraft, std::less<>> &aircraft, char &sel);
+void show(std::set<Aircraft, std::less<>> &aircraft, char &sel);
+void aircraft_conveyor();
 
 
 #endif //TECHPROGKURSACH_INTERFACE_H

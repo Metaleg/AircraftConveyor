@@ -11,49 +11,38 @@ HelicopterBuilder& HelicopterBuilder::build() {
 
 void HelicopterBuilder::create() {
     aircraft = std::make_shared<Aircraft>();
-    aircraft->set_p_type_(helicopter);
 }
 
 void HelicopterBuilder::build_name() {
     std::cout << "Enter helicopter name: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_name(ch);
+    aircraft->set_name(set_string());
 }
 
 void HelicopterBuilder::build_military_civil() {
     std::cout << "Enter helicopter type: military or civil: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_militaty_civil(ch);
+    aircraft->set_militaty_civil(set_string());
 }
 
 void HelicopterBuilder::build_type() {
     std::cout << "Enter helicopter type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_type(ch);
+    aircraft->set_type(set_string());
 }
 
 void HelicopterBuilder::build_weight() {
     std::cout << "Enter takeoff weight: ";
-    aircraft->set_takeoff_weight_(set_int());
+    aircraft->set_takeoff_weight(set_int());
 }
 
 void HelicopterBuilder::build_engines() {
     std::cout << "Enter engines type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_engine_type(ch);
+    aircraft->set_engine_type(set_string());
     std::cout << "Enter number of engines: ";
     aircraft->set_engines(set_int());
 }
 
 void HelicopterBuilder::build_chassis() {
     std::cout << "Enter chassis type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_chassis_type(ch);
+    aircraft->set_chassis_type(set_string());
 }
 
 void HelicopterBuilder::build_speed() {
@@ -67,9 +56,7 @@ void HelicopterBuilder::build_takeoff_land() {
 
 void HelicopterBuilder::build_control() {
     std::cout << "Enter control method: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_control_method(ch);
+    aircraft->set_control_method(set_string());
 }
 
 void HelicopterBuilder::build_crew() {
@@ -84,7 +71,5 @@ void HelicopterBuilder::build_year() {
 
 void HelicopterBuilder::build_weapon() {
     std::cout << "Enter weapon type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_weapon_type(ch);
+    aircraft->set_weapon_type(set_string());
 }

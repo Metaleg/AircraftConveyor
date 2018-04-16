@@ -11,40 +11,32 @@ QuadcopterBuilder& QuadcopterBuilder::build() {
 
 void QuadcopterBuilder::create() {
     aircraft = std::make_shared<Aircraft>();
-    aircraft->set_p_type_(quadcopter);
+    //aircraft->set_p_type_(quadcopter);
 }
 
 void QuadcopterBuilder::build_name() {
     std::cout << "Enter quadcopter name: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_name(ch);
+    aircraft->set_name(set_string());
 }
 
 void QuadcopterBuilder::build_military_civil() {
     std::cout << "Enter quadcopter type: military or civil: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_militaty_civil(ch);
+    aircraft->set_militaty_civil(set_string());
 }
 
 void QuadcopterBuilder::build_type() {
     std::cout << "Enter quadcopter type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_type(ch);
+    aircraft->set_type(set_string());
 }
 
 void QuadcopterBuilder::build_weight() {
     std::cout << "Enter takeoff weight: ";
-    aircraft->set_takeoff_weight_(set_int());
+    aircraft->set_takeoff_weight(set_int());
 }
 
 void QuadcopterBuilder::build_engines() {
     std::cout << "Enter engines type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_engine_type(ch);
+    aircraft->set_engine_type(set_string());
     std::cout << "Enter number of engines: ";
     aircraft->set_engines(set_int());
 }
@@ -69,7 +61,5 @@ void QuadcopterBuilder::build_year() {
 
 void QuadcopterBuilder::build_weapon() {
     std::cout << "Enter weapon type: ";
-    char ch[SIZE];
-    std::cin >> ch;
-    aircraft->set_weapon_type(ch);
+    aircraft->set_weapon_type(set_string());
 }

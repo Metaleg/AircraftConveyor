@@ -5,72 +5,70 @@
 #ifndef TECHPROGKURSACH_PLANE_H
 #define TECHPROGKURSACH_PLANE_H
 
+#include "Validator.h"
 #include <iostream>
 #include <iomanip>
-#include <cstring>
-#include <fstream>
 #include <memory>
-#include <cstdio>
 
-const int SIZE = 50;
-enum aircraft_type{none, passenger_aircraft, combat_aircraft, helicopter, quadcopter};
-class Exception{};
+enum aircraft_type{passenger_aircraft, combat_aircraft, helicopter, quadcopter};
 
 class Aircraft{
-    aircraft_type p_type_;
-    char name_[SIZE];
-    char military_civil_[SIZE];
-    char type_[SIZE];
+    std::string name_;
+    std::string military_civil_;
+    std::string type_;
     int takeoff_weight_;
     int engines_;
-    char engine_type_[SIZE];
+    std::string engine_type_;
     int wings_;
-    char wings_location_[SIZE];
-    char chassis_type_[SIZE];
+    std::string wings_location_;
+    std::string chassis_type_;
     int flight_speed_;
-    char takeoff_landing_type_[SIZE];
-    char control_method_[SIZE];
+    std::string takeoff_landing_type_;
+    std::string control_method_;
     int crew_;
     int year_of_product_;
-    char weapon_type_[SIZE];
-
+    std::string weapon_type_;
 
 public:
     Aircraft() noexcept;
-    explicit Aircraft(char name[]) noexcept;
-    Aircraft(const Aircraft& plane) noexcept;
-    Aircraft(Aircraft&& plane) noexcept;
-    Aircraft& operator=(const Aircraft& plane) = default;
-    Aircraft& operator=(Aircraft&& plane) noexcept;
+    explicit Aircraft(std::string &name) noexcept;
+    Aircraft(const Aircraft &aircraft) noexcept;
+    Aircraft(Aircraft &&plane) noexcept;
+    Aircraft&operator=(const Aircraft &plane) = default;
+    Aircraft&operator=(Aircraft &&plane) noexcept;
     ~Aircraft() = default;
 
-    void write();
-    void read(int&, aircraft_type&);
-
-    void set_p_type_(aircraft_type p_type);
-    void set_name(char* name);
-    void set_militaty_civil(char* military_civil);
-    void set_type(char* type);
-    void set_takeoff_weight_(int takeoff_weight);
+    void set_name(const std::string &name);
+    void set_militaty_civil(const std::string &military_civil);
+    void set_type(const std::string &type);
+    void set_takeoff_weight(int takeoff_weight);
     void set_engines(int engines);
-    void set_engine_type(char* engine_type);
-    void set_wings_(int wings);
-    void set_wings_location(char* wings_location);
-    void set_chassis_type(char* chassis_type);
+    void set_engine_type(const std::string &engine_type);
+    void set_wings(int wings);
+    void set_wings_location(const std::string &wings_location);
+    void set_chassis_type(const std::string &chassis_type);
     void set_flight_speed_(int flight_speed);
-    void set_takeoff_landing_type(char* takeoff_landing_type);
-    void set_control_method(char* control_method);
+    void set_takeoff_landing_type(const std::string &takeoff_landing_type);
+    void set_control_method(const std::string &control_method);
     void set_crew_(int crew);
     void set_year_of_product_(int year_of_product);
-    void set_weapon_type(char* weapon_type);
+    void set_weapon_type(const std::string &weapon_type);
 
-    const char *get_name() const;
-
-    //size of files
-    static int passenger_plane_count();
-    static int warplane_count();
-    static int helicopter_count();
-    static int quadcopter_count();
+    const std::string &get_name() const;
+    const std::string &get_military_civil() const;
+    const std::string &get_type() const;
+    int get_takeoff_weight() const;
+    int get_engines() const;
+    const std::string &get_engine_type() const;
+    int get_wings() const;
+    const std::string &get_wings_location() const;
+    const std::string &get_chassis_type() const;
+    int get_flight_speed() const;
+    const std::string &get_takeoff_landing_type() const;
+    const std::string &get_control_method() const;
+    int get_crew() const;
+    int get_year_of_product() const;
+    const std::string &get_weapon_type() const;
 
     friend std::ostream &operator<<(std::ostream &os, const Aircraft &plane);
     bool operator<(const Aircraft &rhs) const;

@@ -96,10 +96,10 @@
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/AircraftBuilder.h">
 			<Option target="TechProgKursach"/>
 		</Unit>
-		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.cpp">
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.cpp">
 			<Option target="TechProgKursach"/>
 		</Unit>
-		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.h">
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.h">
 			<Option target="TechProgKursach"/>
 		</Unit>
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/Director.cpp">
@@ -120,6 +120,12 @@
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/Interface.h">
 			<Option target="TechProgKursach"/>
 		</Unit>
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/LoadSave.cpp">
+			<Option target="TechProgKursach"/>
+		</Unit>
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/LoadSave.h">
+			<Option target="TechProgKursach"/>
+		</Unit>
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/PassengerAircraftBuilder.cpp">
 			<Option target="TechProgKursach"/>
 		</Unit>
@@ -130,6 +136,12 @@
 			<Option target="TechProgKursach"/>
 		</Unit>
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/QuadcopterBuilder.h">
+			<Option target="TechProgKursach"/>
+		</Unit>
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/Validator.cpp">
+			<Option target="TechProgKursach"/>
+		</Unit>
+		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/Validator.h">
 			<Option target="TechProgKursach"/>
 		</Unit>
 		<Unit filename="/home/metalleg/CLionProjects/TechProgKursach/main.cpp">

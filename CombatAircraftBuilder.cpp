@@ -2,78 +2,82 @@
 // Created by metalleg on 24.03.18.
 //
 
-#include "PassengerAircraftBuilder.h"
+#include "CombatAircraftBuilder.h"
 
-PassengerAircraftBuilder& PassengerAircraftBuilder::build() {
-    static PassengerAircraftBuilder pas;
-    return pas;
+CombatAircraftBuilder& CombatAircraftBuilder::build() {
+    static CombatAircraftBuilder war;
+    return war;
 }
 
-void PassengerAircraftBuilder::create() {
+void CombatAircraftBuilder::create() {
     aircraft = std::make_shared<Aircraft>();
+    //aircraft->set_p_type_(combat_aircraft);
 }
 
-void PassengerAircraftBuilder::build_name() {
+void CombatAircraftBuilder::build_name() {
     std::cout << "Enter aircraft name: ";
     aircraft->set_name(set_string());
 }
 
-void PassengerAircraftBuilder::build_military_civil() {
-    std::cout << "Enter aircraft type: military or civil: ";
-    aircraft->set_militaty_civil(set_string());
+void CombatAircraftBuilder::build_military_civil() {
+    aircraft->set_militaty_civil("Military");
 }
 
-void PassengerAircraftBuilder::build_type() {
+void CombatAircraftBuilder::build_type() {
     std::cout << "Enter aircraft type: ";
     aircraft->set_type(set_string());
 }
 
-void PassengerAircraftBuilder::build_weight() {
+void CombatAircraftBuilder::build_weight() {
     std::cout << "Enter takeoff weight: ";
     aircraft->set_takeoff_weight(set_int());
 }
 
-void PassengerAircraftBuilder::build_engines() {
+void CombatAircraftBuilder::build_engines() {
     std::cout << "Enter engines type: ";
     aircraft->set_engine_type(set_string());
     std::cout << "Enter number of engines: ";
     aircraft->set_engines(set_int());
 }
 
-void PassengerAircraftBuilder::build_wings() {
+void CombatAircraftBuilder::build_wings() {
     std::cout << "Enter wings location: ";
     aircraft->set_wings_location(set_string());
     std::cout << "Enter number of wings: ";
     aircraft->set_wings(set_int());
 }
 
-void PassengerAircraftBuilder::build_chassis() {
+void CombatAircraftBuilder::build_chassis() {
     std::cout << "Enter chassis type: ";
     aircraft->set_chassis_type(set_string());
 }
 
-void PassengerAircraftBuilder::build_speed() {
+void CombatAircraftBuilder::build_speed() {
     std::cout << "Enter flight speed: ";
     aircraft->set_flight_speed_(set_int());
 }
 
-void PassengerAircraftBuilder::build_takeoff_land() {
+void CombatAircraftBuilder::build_takeoff_land() {
     std::cout << "Enter takeoff landing type: ";
     aircraft->set_takeoff_landing_type(set_string());
 }
 
-void PassengerAircraftBuilder::build_control() {
+void CombatAircraftBuilder::build_control() {
     std::cout << "Enter control method: ";
     aircraft->set_control_method(set_string());
 }
 
-void PassengerAircraftBuilder::build_crew() {
+void CombatAircraftBuilder::build_crew() {
     std::cout << "Enter number of crew: ";
     aircraft->set_crew_(set_int());
 }
 
-void PassengerAircraftBuilder::build_year() {
+void CombatAircraftBuilder::build_year() {
     std::cout << "Enter year of production: ";
     aircraft->set_year_of_product_(set_int());
 }
 
+void CombatAircraftBuilder::build_weapon() {
+    std::cout << "Enter weapon type: ";
+    aircraft->set_weapon_type(set_string());
+}

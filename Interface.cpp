@@ -1,74 +1,53 @@
 //
-// Created by metalleg on 30.03.18.
+// Created by metalleg on 11.04.18.
 //
 
 #include "Interface.h"
 
-void read_file(std::set<Aircraft>& aircraft){
-    aircraft_type p_type = none;
-    char sel = 0;
-    Aircraft p;
-
-    std::cout << "Enter type of aircrafts to show: p - passenger aircraft\n"
-              << "                                 c - combat aircraft\n"
-              << "                                 h - helicopter\n"
-              << "                                 q - quadcopter\n";
-    std::cout << "Your choose: "; std::cin >> sel;
-
-    switch (sel){
-        case 'p':
-            p_type = passenger_aircraft;
-            for (int i = 0; i < Aircraft::passenger_plane_count(); ++i){
-                p.read(i, p_type);
-                aircraft.emplace(p);
-            }
-            break;
-        case 'c':
-            p_type = combat_aircraft;
-            for (int i = 0; i < Aircraft::warplane_count(); ++i){
-                p.read(i, p_type);
-                aircraft.emplace(p);
-            }
-            break;
-        case 'h':
-            p_type = helicopter;
-            for (int i = 0; i < Aircraft::helicopter_count(); ++i){
-                p.read(i, p_type);
-                aircraft.insert(p);
-            }
-            break;
-        case 'q':
-            p_type = quadcopter;
-            for (int i = 0; i < Aircraft::quadcopter_count(); ++i){
-                p.read(i, p_type);
-                aircraft.insert(p);
-            }
-            break;
-        default:
-            std::cout << "Error! Invalid type!\n";
-            break;
-    }
-}
-
-void create(std::set<Aircraft>& aircraft){
-    Director &dir = Director::direct();
-    PassengerAircraftBuilder &pas = PassengerAircraftBuilder::build();
-    CombatAircraft &comb = CombatAircraft::build();
-    HelicopterBuilder &hel = HelicopterBuilder::build();
-    QuadcopterBuilder &quad = QuadcopterBuilder::build();
-    std::shared_ptr<Aircraft> pl;
-    Aircraft p;
-
-    char sel = 0;
-    int qnt = 0;
+void load(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+    aircraft_type p_type;
+    LoadSave &ls = LoadSave::loadsave();
 
     std::cout << "Enter type of aircrafts: p - passenger aircraft\n"
               << "                         c - combat aircraft\n"
               << "                         h - helicopter\n"
               << "                         q - quadcopter\n";
     std::cout << "Your choice: ";   std::cin >> sel;
-    std::cout << "Enter quantity of aircrafts: "; std::cin >> qnt;
 
+    switch (sel){
+        case 'p':
+            p_type = passenger_aircraft;
+            break;
+        case 'c':
+            p_type = combat_aircraft;
+            break;
+        case 'h':
+            p_type = helicopter;
+            break;
+        case 'q':
+            p_type = quadcopter;
+            break;
+        default:
+            std::cerr << "Error! Invalid type!\n";
+            return;
+    }
+    ls.load(aircraft, p_type);
+}
+
+void save(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+    PassengerAircraftBuilder &pas = PassengerAircraftBuilder::build();
+    CombatAircraftBuilder &comb = CombatAircraftBuilder::build();
+    HelicopterBuilder &hel = HelicopterBuilder::build();
+    QuadcopterBuilder &quad = QuadcopterBuilder::build();
+    Director &dir = Director::direct();
+    LoadSave &ls = LoadSave::loadsave();
+    std::shared_ptr<Aircraft> pl;
+    Aircraft p;
+    aircraft_type p_type;
+
+    int qnt = 0;
+    load(aircraft, sel);
+    std::cout << "Enter quantity of aircrafts: "; std::cin >> qnt;
     switch (sel){
         case 'p':
             for (int i = 0; i < qnt; ++i){
@@ -77,6 +56,7 @@ void create(std::set<Aircraft>& aircraft){
                 p = *pl;
                 aircraft.emplace(p);
             }
+            ls.save(aircraft, p_type);
             break;
 
         case 'c':
@@ -86,6 +66,7 @@ void create(std::set<Aircraft>& aircraft){
                 p = *pl;
                 aircraft.emplace(p);
             }
+            ls.save(aircraft, p_type);
             break;
         case 'h':
             for (int i = 0; i < qnt; ++i){
@@ -94,17 +75,74 @@ void create(std::set<Aircraft>& aircraft){
                 p = *pl;
                 aircraft.emplace(p);
             }
+            ls.save(aircraft, p_type);
             break;
         case 'q':
             for (int i = 0; i < qnt; ++i){
                 std::cout << 'N' << i + 1 << std::endl;
                 pl = dir.construct(quad);
                 p = *pl;
-                aircraft.insert(p);
+                aircraft.emplace(p);
             }
+            ls.save(aircraft, p_type);
             break;
         default:
-            std::cout << "Error! Invalid type!\n";
+            std::cerr << "Error! Invalid type!\n";
             break;
+    }
+    std::cout << "Save is successful!\n";
+    aircraft.clear();
+}
+
+void search_by_name(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+    std::set<Aircraft, std::less<>>::const_iterator iter;
+
+    load(aircraft, sel);
+    std::string search_name;
+    std::cout << "Enter search name: "; std::cin >> search_name;
+    Aircraft search(search_name);
+    iter = aircraft.lower_bound(search);
+    while (iter != aircraft.upper_bound(search))
+        std::cout << *iter++ << std::endl;
+    aircraft.clear();
+}
+
+void show(std::set<Aircraft, std::less<>> &aircraft, char &sel){
+    load(aircraft, sel);
+    for(auto &it : aircraft)
+        std::cout << it;
+    aircraft.clear();
+}
+
+void aircraft_conveyor(){
+    char sel = 0;
+    std::set<Aircraft, std::less<>> aircraft;
+
+    std::cout << "----------Aircraft conveyor----------\n";
+
+    while(sel != 'e'){
+        std::cout << "\nChoose: c - create one or few aircraft;\n"
+                  << "        s - show all aircrafts by type;\n"
+                  << "        p - print by name;\n"
+                  << "        e - exit;\n";
+        std::cout << "Your choice: ";   std::cin >> sel;
+
+        switch(sel){
+            case 'c':
+                save(aircraft, sel);
+                break;
+            case 's':
+                show(aircraft, sel);
+                break;
+            case 'p':
+                search_by_name(aircraft, sel);
+                break;
+            case 'e':
+                std::cout << "Exit\n";
+                break;
+            default:
+                std::cerr << "Error! Please, enter correct command!\n";
+                break;
+        }
     }
 }

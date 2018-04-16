@@ -11,17 +11,13 @@ Aircraft.h
 /home/metalleg/CLionProjects/TechProgKursach/Aircraft.h
 
 /home/metalleg/CLionProjects/TechProgKursach/Aircraft.h
+Validator.h
+/home/metalleg/CLionProjects/TechProgKursach/Validator.h
 iostream
 -
 iomanip
 -
-cstring
--
-fstream
--
 memory
--
-cstdio
 -
 
 /home/metalleg/CLionProjects/TechProgKursach/AircraftBuilder.cpp
@@ -32,11 +28,11 @@ AircraftBuilder.h
 Aircraft.h
 /home/metalleg/CLionProjects/TechProgKursach/Aircraft.h
 
-/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.cpp
-CombatAircraft.h
-/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.h
+/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.cpp
+CombatAircraftBuilder.h
+/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.h
 
-/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.h
+/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.h
 AircraftBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/AircraftBuilder.h
 
@@ -65,19 +61,39 @@ Director.h
 /home/metalleg/CLionProjects/TechProgKursach/Director.h
 PassengerAircraftBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/PassengerAircraftBuilder.h
-CombatAircraft.h
-/home/metalleg/CLionProjects/TechProgKursach/CombatAircraft.h
+CombatAircraftBuilder.h
+/home/metalleg/CLionProjects/TechProgKursach/CombatAircraftBuilder.h
 HelicopterBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/HelicopterBuilder.h
 QuadcopterBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/QuadcopterBuilder.h
 Aircraft.h
 /home/metalleg/CLionProjects/TechProgKursach/Aircraft.h
+LoadSave.h
+/home/metalleg/CLionProjects/TechProgKursach/LoadSave.h
 algorithm
 -
 set
 -
 iterator
+-
+
+/home/metalleg/CLionProjects/TechProgKursach/LoadSave.cpp
+LoadSave.h
+/home/metalleg/CLionProjects/TechProgKursach/LoadSave.h
+
+/home/metalleg/CLionProjects/TechProgKursach/LoadSave.h
+Aircraft.h
+/home/metalleg/CLionProjects/TechProgKursach/Aircraft.h
+boost/property_tree/ptree.hpp
+-
+boost/property_tree/xml_parser.hpp
+-
+boost/foreach.hpp
+-
+algorithm
+-
+set
 -
 
 /home/metalleg/CLionProjects/TechProgKursach/PassengerAircraftBuilder.cpp
@@ -95,6 +111,14 @@ QuadcopterBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/QuadcopterBuilder.h
 AircraftBuilder.h
 /home/metalleg/CLionProjects/TechProgKursach/AircraftBuilder.h
+
+/home/metalleg/CLionProjects/TechProgKursach/Validator.cpp
+Validator.h
+/home/metalleg/CLionProjects/TechProgKursach/Validator.h
+
+/home/metalleg/CLionProjects/TechProgKursach/Validator.h
+exception
+-
 
 /home/metalleg/CLionProjects/TechProgKursach/main.cpp
 Interface.h
